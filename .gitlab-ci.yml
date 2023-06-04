@@ -1,0 +1,47 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  PROJECT_NAME: Demo-Botan
+
+include:
+  - project: 'devops/ci-templates'
+    file: '/php-nginx/gitlab-ci.yml'
+
+################# Production #################
+
+build-docker:
+  extends: .build
+  stage: build
+
+  tags:
+    - shell
+
+  only:
+    - master
+    # https://www.cloudsigma.com/deploying-laravel-nginx-and-mysql-with-docker-compose/
+    # https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose-ru
+
+  variables:
+    ENV: prod
+    TAG: latest
+
+deploy-app:
+  extends: .deploy
+  stage: deploy
+  only:
+    - master
+
+  tags:
+    - docker
+
+  needs:
+    - build-docker
+
+  variables:
+    ENV: prod
+    DESCRIPTION: "K-Bot Production Stack"
+    UPGRADE: app lb tbot
+
+################# /Production #################

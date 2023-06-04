@@ -1,0 +1,107 @@
+version: '2'
+
+#################################
+
+networks:
+  kbot_network:
+    driver: bridge
+
+services:
+  ##############################################################################
+
+  app:
+    image: reg.cic.kz/kmc/k-bot:latest
+    container_name: php-app
+    hostname: php-app
+
+    labels:
+      io.rancher.scheduler.affinity:host_label: name=alog
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+
+    volumes:
+      - /var/data/kbot/prod/app/storage:/app/storage
+      - /var/data/kbot/prod/shared:/shared
+
+    networks:
+      - kbot_network
+
+    depends_on:
+      - db
+
+  ##############################################################################
+
+  db:
+    image: reg.cic.kz/centras/mysql:5.7
+    container_name: Database
+    hostname: db
+
+    networks:
+      - kbot_network
+
+    volumes:
+      - /var/data/kbot/prod/db:/var/lib/mysql
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=QazXsw123
+      - MYSQL_DATABASE=kbot_prod
+
+    labels:
+      io.rancher.scheduler.affinity:host_label: name=alog
+      io.rancher.container.hostname_override: container_name
+
+  ##############################################################################
+
+  pma:
+    image: reg.cic.kz/centras/phpmyadmin:latest
+    container_name: pma
+    privileged: true
+
+    links:
+      - db
+
+    ports:
+      - "7512:80/tcp"
+
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=QazXsw123
+      - UPLOAD_LIMIT=1024M
+
+    networks:
+      - kbot_network
+
+    labels:
+      io.rancher.scheduler.affinity:host_label: name=alog
+
+  tbot:
+    image: reg.cic.kz/kmc/kmc-botan:latest
+
+    labels:
+      io.rancher.scheduler.affinity:host_label: name=alog
+      io.rancher.container.pull_image: always
+
+    networks:
+      - kbot_network
+
+  ######################
+  #   Балансировщики   #
+  ######################
+
+  lb:
+    image: rancher/lb-service-haproxy:v0.9.14
+    ports:
+      - "7511:7511/tcp"
+
+    networks:
+      - kbot_network
+
+    links:
+      - app
+
+    depends_on:
+      - app
+
+    labels:
+      io.rancher.scheduler.affinity:host_label: name=alog

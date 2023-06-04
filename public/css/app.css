@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    left: 0;
+}
+
+.fa-bars{
+    color: white;
+}
+
+.sidebar{
+    position: fixed;
+    top: 55px;
+    left: 0;
+    background: #d9e4fc;
+    height: 100%;
+    width: 370px;
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+
+.sidebar.close-side{
+    width: 78px;
+}
+
+.sidebar .nav-links{
+    padding: 0;
+    height: 100%;
+    padding-top: 30px 0 150px 0;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.sidebar .nav-links{
+    overflow: visible;
+}
+
+.sidebar .nav-links::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebar .nav-links li{
+    position: relative;
+    list-style: none;
+}
+
+.sidebar .nav-links li .icon-link{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.sidebar.close-side .nav-links li .icon-link{
+    display: block;
+}
+
+.sidebar .nav-links li i{
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li.showMenu i.arrow{
+    transform: rotate(-180deg);
+}
+
+.sidebar.close-side .nav-links i.arrow{
+    display: none;
+}
+
+.sidebar .nav-links li:hover{
+    background: #1d1b31;
+}
+
+.sidebar .nav-links li:hover i,
+.sidebar .nav-links li:hover .link_name{
+    color: white;
+}
+
+.sidebar .nav-links li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sidebar .nav-links li a .link_name{
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d1b31;
+}
+
+.sidebar.close-side .nav-links li a .link_name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar .nav-links li .sub-menu{
+    padding: 0 0 5px 2px;
+    margin-top: 2px;
+    background: #1d1b31;
+    display: none;
+}
+
+.sidebar .nav-links li.showMenu .sub-menu{
+    display: block;
+}
+
+.sidebar .nav-links li .sub-menu a{
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li .sub-menu a:hover{
+    opacity: 1;
+}
+
+.sidebar .nav-links li .sub-menu i {
+    color: white;
+}
+
+.sidebar .nav-links li .sub-menu a i{
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.sidebar.close-side .nav-links li .sub-menu{
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 0 10px;
+    border-radius: 0 6px 6px 0;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+}
+
+.sidebar.close-side .nav-links li:hover .sub-menu{
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li .sub-menu .link_name{
+    display: none;
+}
+
+.sidebar.close-side .nav-links li .sub-menu .link_name{
+    display: none;
+}
+
+.sidebar.close-side .nav-links li .sub-menu .link_name{
+    font-size: 16px;
+    opacity: 1;
+    display: block;
+}
+
+.sidebar .nav-links li .sub-menu.blank{
+    opacity: 1;
+    pointer-events: auto;
+    padding: 3px 20px 6px 16px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar .nav-links li:hover .sub-menu.blank{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-section{
+    position: relative;
+    /* height: 93vh; */
+    left: 150px;
+    width: calc(100% - 350px);
+    transition: all 0.5s ease;
+    margin-top: 80px;
+    margin-right: 150px;
+    font-size: 14px !important;
+}
+
+.sidebar.close-side ~ .home-section{
+    left: 78px;
+    width: calc(100% - 78px);
+}
+
+/* .home-content{
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.home-section .home-content .text{
+    color: #11101d;
+    font-size: 35px;
+}
+
+.home-section .home-content .text{
+    font-size: 26px;
+    font-weight: 600;
+} */
+
+
+/*------------------------------------------- Menu Start*/
+
+/**************************************************** start subMenuTwo **********************************************************/
+.sidebar .nav-links li.showSubMenu i.arrow-two{
+    transform: rotate(-180deg);
+}
+
+.sidebar.close-side .nav-links i.arrow-two{
+    display: none;
+}
+
+.sidebar.close-side .nav-links li .icon-link-two{
+    display: block;
+
+}
+
+.sidebar .nav-links li .icon-link-two{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two{
+    display: block;
+}
+
+.sidebar .nav-links li .sub-menu-two{
+    padding: 0 0 10px 6px;
+    margin-top: 2px;
+    background: #1d1b31;
+    display: none;
+}
+
+.sidebar.close-side .nav-links li .sub-menu-two{
+    display: none;
+}
+
+.sidebar.close-side .nav-links .sub-menu li .sub-menu-two{
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 0 10px;
+    border-radius: 0 6px 6px 0;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+}
+
+.sidebar.close-side .nav-links .sub-menu li:hover .sub-menu-two{
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+/********************************************************* end subMenuTwo ***************************************************/
+
+/******************************************************** start sub three **************************************************/
+/* - - - - - - - - - start sub three arrow - - - - - - - - - */
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two .icon-link-three{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two li.showSubMenuTwo i.arrow-three{
+    transform: rotate(-180deg);
+}
+
+.sidebar.close-side .nav-links i.arrow-three{
+    display: none;
+}
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two li.showSubMenuTwo .sub-menu-three{
+    display: block;
+}
+
+/* - - - - - - - - - end sub three arrow - - - - - - - - - */
+
+.sidebar .nav-links li .sub-menu-two li .sub-menu-three {
+    padding: 0 0 10px 6px;
+    margin-top: 2px;
+    background: #1d1b31;
+    display: none;
+}
+
+.sidebar.close-side .nav-links .sub-menu li .sub-menu-two li .sub-menu-three{
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 0 10px;
+    border-radius: 6px 6px 6px 6px;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+}
+
+.sidebar.close-side .nav-links .sub-menu li .sub-menu-two li:hover .sub-menu-three{
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+/************************************************** end substr three *****************************************************/
+
+/************************************************** start sub four *******************************************************/
+/* - - - - - - - - - start sub four arrow - - - - - - - - - */
+.icon-link-four{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two li.showSubMenuTwo .sub-menu-three li.showSubMenuThree i.arrow-four{
+    transform: rotate(-180deg);
+}
+
+.sidebar.close-side .nav-links i.arrow-four{
+    display: none;
+}
+
+.sidebar .nav-links li.showSubMenu .sub-menu-two li.showSubMenuTwo .sub-menu-three li.showSubMenuThree .sub-menu-four{
+    display: block;
+}
+
+/* - - - - - - - - - end sub four arrow - - - - - - - - - */
+
+.sidebar .nav-links li .sub-menu-two li .sub-menu-three li .sub-menu-four{
+    padding: 0 0 10px 6px;
+    margin-top: 2px;
+    background: #1d1b31;
+    display: none;
+}
+
+.sidebar.close-side .nav-links .sub-menu li .sub-menu-two li .sub-menu-three li .sub-menu-four{
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 0 10px;
+    border-radius: 6px 6px 6px 6px;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+}
+
+.sidebar.close-side .nav-links .sub-menu li .sub-menu-two li .sub-menu-three li:hover .sub-menu-four{
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+/********************************************************** end sub four *****************************************************/
+
+/* ----------------------------------Menu end*/
+
+/* footer.sticky-footer {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 78px;
+    background-color: #e9ecef;
+  }
+  
+footer.sticky-footer .copyright {
+    line-height: 1;
+    font-size: 0.8rem;
+}
+
+#content-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    padding-top: 0rem;
+    padding-bottom: 78px;
+    font-size: 14px;
+} */
